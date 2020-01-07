@@ -1,6 +1,6 @@
 pragma solidity >=0.4.22 <0.6.0;
 
-import "./messageStorage.sol";
+import "./MessageStorage.sol";
 
 contract Messenger is MessageStorage{
 
@@ -18,7 +18,7 @@ contract Messenger is MessageStorage{
     function addMessage(string memory newMessage) public onlyOwner {
         messages.push(newMessage);
     }
-    function getMessagesByIndex(uint msgIndex) public view returns(string memory) {
+    function getMessagesByAddress(uint msgIndex) public view returns(string memory) {
         return messages[msgIndex];
     }
     function getMessageIndex(address msgAddress)public view returns(uint){
@@ -31,4 +31,7 @@ contract Messenger is MessageStorage{
     index = countMessage();
     }
 
+     function deleteMessage(uint index) onlyOwner external() {
+        delete messages[index];
+    }
 }
